@@ -14,6 +14,11 @@ adder <- function () {
     
     df <- mongo.cursor.to.data.frame(cursor)
     
+    # delete data
+    mongo.drop(mongo, "testdb.users")
+    # close connection
+    mongo.destroy(mongo)
+    
   }
   
   values <- df$age
