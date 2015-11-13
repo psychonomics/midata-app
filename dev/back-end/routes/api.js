@@ -95,8 +95,8 @@ module.exports = function(app, express) {
         		}
     		};
 
-			// rio.sourceAndEval(path.join(__dirname, "test.R"), {
-    		rio.sourceAndEval("/home/jackwright/Documents/1_Projects/5_MiData/dev/back-end/scripts/test.R", {	
+			rio.sourceAndEval(path.join(__dirname, "../scripts/test.R"), {
+    		//rio.sourceAndEval("/home/jackwright/Documents/1_Projects/5_MiData/dev/back-end/scripts/test.R", {	
     			entryPoint: "adder",
     			callback: displayResponse
 			});
