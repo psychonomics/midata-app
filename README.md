@@ -10,3 +10,7 @@ The repository contains two sub-directories:
 2. **misc_testing** - containing miscellaneous code to test specific features (e.g. Plotly).
 
 Please respect this organisational structure when contributing to this repository.  
+
+The users who have accessed this repository are:
+
+* Jack
