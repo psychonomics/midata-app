@@ -1,0 +1,43 @@
+    <div class="jumbotron text-center">
+        <h1>Results Page</h1>
+
+        <p>{{ results.message }}</p>
+
+        <table class="table table-bordered table-striped" ng-show="results.users">
+			<thead>
+				<tr>
+					<th>_id</th>
+					<th>Username</th>
+					<th>Full Name</th>
+					<th>Age</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="person in results.users">
+					<td>{{ person._id }}</td>
+					<td>{{ person.username }}</td>
+					<td>{{ person.fullname }}</td>
+					<td>{{ person.age }}</td>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<button ng-click="results.analyse()">Analyse</button>
+		<div ng-show="results.analysis">{{ results.analysis }}</div>
+
+		<hr>
+
+		<div id="plot_area" style="height:600px;"></div>
+
+    	<script>
+			var data = [{
+  				x: ['giraffes', 'orangutans', 'monkeys'],
+  				y: [20, 14, 23],
+  				type: 'bar'
+			}];
+
+			Plotly.newPlot('plot_area', data);
+		</script>
+
+    </div>
