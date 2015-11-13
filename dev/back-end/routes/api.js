@@ -4,10 +4,6 @@ var config     = require('../../config');
 var rio 	   = require('rio');
 var path 	   = require('path');	
 
-// var dat = {
-//     args: [1, 2, 3]
-// };
-
 module.exports = function(app, express) {
 
 	var apiRouter = express.Router();
