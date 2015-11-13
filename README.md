@@ -6,7 +6,7 @@ The application is developed using the MEAN stack, with an R script performing t
 
 The repository contains two sub-directories:
 
-	1. **dev** - containing the app in development.
-	2. **misc_testing** - containing miscellaneous code to test specific features (e.g. Plotly).
+1. **dev** - containing the app in development.
+2. **misc_testing** - containing miscellaneous code to test specific features (e.g. Plotly).
 
 Please respect this organisational structure when contributing to this repository.  
