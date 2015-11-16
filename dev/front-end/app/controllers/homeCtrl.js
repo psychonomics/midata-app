@@ -1,6 +1,6 @@
 angular.module('homeCtrl', ['resultsService'])
 
-.controller('homeController', function(User) {
+.controller('homeController', function(Transaction) {
 
 	var vm = this;
 
@@ -19,42 +19,57 @@ angular.module('homeCtrl', ['resultsService'])
                 var result = [];
                 var headers=lines[0].split(",");
 
-                for(var i=1;i<lines.length;i++){
+                // rename column headers to fit schema
+                headers[0] = "date";
+                headers[1] = "transtype";
+                headers[2] = "merchant";
+                headers[3] = "amount";
+                headers[4] = "balance";
+                
+                // console.log(headers);
+                // console.log(lines.length);
+                
+                for(var i=lines.length-1;i>0;i--){
 
-                    var obj = {};
-                    var currentline=lines[i].split(",");
+                	var obj = {};
+
+                	// removes commas within quotes, and splits by remaining commas
+                    var myRE = /(\,)(?=[0-9]+\.)/;
+                    var currentline=lines[i].replace(myRE, ""); // removes commas within numbers, if present
+                    currentline = currentline.replace('"', ''); // removes quotation marks, if present
+                    currentline = currentline.split(","); // splits on remaining commas
+
+                    // converts date to US date format
+                    var dateparts = currentline[0].split("/"); 
+					currentline[0] = dateparts[1] + "/" + dateparts[0] + "/" + dateparts[2];               
+
+					// removes £ signs
+                    currentline[3] = accounting.unformat(currentline[3]);   // reformat using accounting package
+                    currentline[4] = accounting.unformat(currentline[4]);   // reformat using accounting package
+
+                    // debugging
+                    // console.log(lines[i]);
+                    // console.log(currentline);
 
                     for(var j=0;j<headers.length;j++){
                         obj[headers[j]] = currentline[j];
                     }
 
+                    // console.log(obj);
                     // result.push(obj);
-                    User.create(obj)
+                    Transaction.create(obj)
                         .success(function(data) {
                             vm.processing = false;
                             console.log(data.message);
                     });
-                }                  
-                //return result; //JavaScript object
-                //console.log(JSON.stringify(result)); //JSON
+                }   
                               
-                }
-                r.readAsText(f);
-            } else { 
-                alert("Failed to load file");
             }
+                r.readAsText(f);
+        } else { 
+            alert("Failed to load file");
+        }
             
     };
-
-    // $scope.csv = {
- //    	content: null,
- //    	header: true,
- //    	headerVisible: true,
- //    	separator: ',',
- //    	separatorVisible: true,
- //    	result: null,
- //    	encoding: 'ISO-8859-1',
- //    	encodingVisible: true,
- //    };
 
 })

@@ -3,21 +3,23 @@
 
         <p>{{ results.message }}</p>
 
-        <table class="table table-bordered table-striped" ng-show="results.users">
+        <table class="table table-bordered table-striped" ng-show="results.transactions">
 			<thead>
 				<tr>
-					<th>_id</th>
-					<th>Username</th>
-					<th>Full Name</th>
-					<th>Age</th>
+					<th>Date</th>
+					<th>Transaction type</th>
+					<th>Merchant/Recipient</th>
+					<th>Amount (£)</th>
+					<th>Balance (£)</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="person in results.users">
-					<td>{{ person._id }}</td>
-					<td>{{ person.username }}</td>
-					<td>{{ person.fullname }}</td>
-					<td>{{ person.age }}</td>
+				<tr ng-repeat="transaction in results.transactions">
+					<td>{{ transaction.date | date:"dd/MM/yyyy" }}</td>
+					<td>{{ transaction.transtype }}</td>
+					<td>{{ transaction.merchant }}</td>
+					<td>{{ transaction.amount }}</td>
+					<th>{{ transaction.balance }}</th>
 					</td>
 				</tr>
 			</tbody>

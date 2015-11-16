@@ -2,12 +2,12 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 // midata schema
-var MidataSchema = new Schema({
+var TransactionSchema = new Schema({
 	date: Date,
-	type: String,
+	transtype: String,
 	merchant: String,
 	amount: Number,
 	balance: Number
 })
 
-module.exports = mongoose.model('Midata', MidataSchema);
+module.exports = mongoose.model('Transaction', TransactionSchema);

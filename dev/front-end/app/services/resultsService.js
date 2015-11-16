@@ -1,41 +1,41 @@
 angular.module('resultsService', [])
 
-.factory('User', function($http) {
+.factory('Transaction', function($http) {
 
 	// create a new object
-	var userFactory = {};
+	var transFactory = {};
 
 	// get a single user
-	userFactory.get = function(id) {
-		return $http.get('/api/users/' + id);
+	transFactory.get = function(id) {
+		return $http.get('/api/midata/' + id);
 	};
 
 	// get all users
-	userFactory.all = function() {
-		return $http.get('/api/users/');
+	transFactory.all = function() {
+		return $http.get('/api/midata/');
 	};
 
 	// create a user
-	userFactory.create = function(userData) {
-		return $http.post('/api/users/', userData);
+	transFactory.create = function(transData) {
+		return $http.post('/api/midata/', transData);
 	};
 
 	// update a user
-	userFactory.update = function(id, userData) {
-		return $http.put('/api/users/' + id, userData);
+	transFactory.update = function(id, transData) {
+		return $http.put('/api/midata/' + id, transData);
 	};
 
 	// delete a user
-	userFactory.delete = function(id) {
-		return $http.delete('/api/users/' + id);
+	transFactory.delete = function(id) {
+		return $http.delete('/api/midata/' + id);
 	};
 
 	// run the R script
-	userFactory.run = function() {
+	transFactory.run = function() {
 		return $http.get('/api/script/');
 	};
 
-	// return our entire userFactory object
-	return userFactory;
+	// return our entire transFactory object
+	return transFactory;
 
 });

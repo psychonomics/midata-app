@@ -1,6 +1,6 @@
 angular.module('resultsCtrl', ['resultsService'])
 
-.controller('resultsController', function(User) {
+.controller('resultsController', function(Transaction) {
 
 	var vm = this;
 
@@ -10,39 +10,41 @@ angular.module('resultsCtrl', ['resultsService'])
     vm.processing = true;
 
     // grab all the users at page load
-    User.all()
+    Transaction.all()
         .success(function(data) {
 
             // when all the users come back, remove the processing variable
             vm.processing = false;
 
-            // bind the users that come back to vm.users
-            vm.users = data;
+            // bind the users that come back to vm.transactions
+            vm.transactions = data;
 
             // grabs data for plot, first as strings
-            var names = "";
-            var ages = "";
+            var TransactionDate = "";
+            var Balance = "";
 
             for (var i = 0; i < data.length; i++) {
-                var name_i = data[i].fullname;
-                var age_i = data[i].age;
+                var TransactionDate_i = data[i].date.substring(0,10);
+                var Balance_i = data[i].balance;
                 if (i != data.length - 1) {
-                    names = names + name_i + ",";
-                    ages = ages + age_i + ","; // comma separated strings can be converted to numeric arrays
+                    TransactionDate = TransactionDate + TransactionDate_i + ",";
+                    Balance = Balance + Balance_i + ","; // comma separated strings can be converted to numeric arrays
                 } else {
-                    names = names + name_i;
-                    ages = ages + age_i;
+                    TransactionDate = TransactionDate + TransactionDate_i;
+                    Balance = Balance + Balance_i;
                 };
             };
             // converts age string to numeric array, and parses string array
-            ages = ages.split(',').map(Number);
-            names = names.split(',');
+            TransactionDate = TransactionDate.split(',');
+            Balance = Balance.split(',').map(Number);
 
             var dat = [{
-                x: names,
-                y: ages,
-                type: 'bar'
+                x: TransactionDate,
+                y: Balance,
+                type: 'scatter'
             }];
+
+            // console.log(dat);
 
             Plotly.newPlot('plot_area', dat);
 
@@ -52,7 +54,7 @@ angular.module('resultsCtrl', ['resultsService'])
     // run analysis script
     vm.analyse = function() {
 
-        User.run()
+        Transaction.run()
             .success(function(data) {
 
                 // when all the users come back, remove the processing variable
