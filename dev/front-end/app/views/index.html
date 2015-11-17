@@ -29,7 +29,7 @@
 	<!-- plotly -->
 	<script src="http://cdn.plot.ly/plotly-latest.min.js"></script>
 
-	<!-- accounting -->
+	<!-- accounting; for handling currency values -->
 	<script type="text/javascript" src="app/scripts/accounting.min.js"></script>
 
 	<!-- controllers -->
@@ -43,11 +43,6 @@
 	<script src="app/app.routes.js"></script>
 	<script src="app/app.js"></script>
 
-
-	<!-- csv parser -->
-	<!--OLD VERSION: script type="text/javascript" src="app/scripts/angular-csv-import.js"></script-->
-	<!--script type="text/javascript" src="app/scripts/csvreader.js"></script-->
-
 </head>
 <body class="container" ng-app="routerApp" ng-controller="mainController as main">
 	<!-- HEADER AND NAVBAR -->
@@ -60,7 +55,6 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
 				<li><a href="/results"><i class="fa fa-shield"></i> Results</a></li>
-				<!--li><a href="/contact"><i class="fa fa-comment"></i> Contact</a></li-->
 			</ul>
 		</nav>
 	</header>

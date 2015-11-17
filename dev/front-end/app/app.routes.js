@@ -19,12 +19,5 @@ angular.module('routerRoutes', ['ngRoute'])
             controllerAs: 'results'
         })
 
-        // route for the contact page
-        //.when('/contact', {
-        //     templateUrl : 'views/pages/contact.html',
-        //     controller  : 'contactController',
-        //    controllerAs: 'contact'
-        //});
-
     $locationProvider.html5Mode(true);
 });
