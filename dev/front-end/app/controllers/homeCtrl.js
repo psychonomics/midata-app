@@ -44,8 +44,8 @@ angular.module('homeCtrl', ['resultsService'])
 
                     	var obj = {};
 
-                    	// removes commas within quotes, and splits by remaining commas
-                        var myRE = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+                    	// splits by commas not in quotes
+                        var myRE = /(".*?"|[^",]+)(?=\s*,|\s*$)/g;
                         var currentline = lines[i].match(myRE);
 
                         // converts date to US date format
