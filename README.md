@@ -1,3 +1,4 @@
+
 # MiData analysis app
 
 This application is being developed to analyse midata files. The user will be able to upload a midata csv file containing details of financial transactions, and receive personalised recommendations relating to money-saving opportunities based on these data. 
@@ -14,3 +15,4 @@ Please respect this organisational structure when contributing to this repositor
 The users who have accessed this repository are:
 
 * Jack
+* Tim
