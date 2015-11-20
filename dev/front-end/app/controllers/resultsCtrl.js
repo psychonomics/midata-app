@@ -1,4 +1,4 @@
-angular.module('resultsCtrl', ['resultsService'])
+angular.module('resultsCtrl', ['appService'])
 
 .controller('resultsController', function(Transaction) {
 

@@ -1,15 +1,28 @@
-angular.module('homeCtrl', ['resultsService'])
+angular.module('homeCtrl', ['appService'])
 
-.controller('homeController', function(Transaction) {
+.controller('homeController', function(Transaction, Bank) {
 
 	var vm = this;
 
 	vm.message = 'Upload your miData file below:';
 
+    vm.options = [{ bankname: "Barclays"}, { bankname: "HSBC"}, { bankname: "Lloyds"}, { bankname: "Nationwide" }];
+    vm.selectedOption = vm.options[0];
+
     vm.csvReader = function() {
 
+        // post bank name to mongo ---------------------------------------
+        console.log("Your selected bank is " + vm.selectedOption.bankname)
+
+        Bank.create(vm.selectedOption)
+                            .success(function(data) {
+                                vm.processing = false;
+                                console.log(data.message);
+                        });
+
+
+        // parse midata csv and send to mongo ----------------------------
         var f = document.getElementById("fileUpload").files[0];
-        // console.log(f);
 
         if (f) {
             var r = new FileReader();
@@ -19,7 +32,7 @@ angular.module('homeCtrl', ['resultsService'])
                 var headerLine = [];
                 
                 for(var i=0;i<lines.length;i++){
-                    if (lines[i].substring(0,4) === "Date"){
+                    if (lines[i].indexOf("Date") > -1){
                         headerLine = i;
                     };
                 };

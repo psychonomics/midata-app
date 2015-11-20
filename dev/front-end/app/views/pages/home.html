@@ -3,6 +3,8 @@
 
         <p>{{ home.message }}</p>
 
+        <select data-ng-options="o.bankname for o in home.options" data-ng-model="home.selectedOption"></select>
+        <p> Your selected bank is {{ home.selectedOption.bankname }}</p>
         <input type="file" id="fileUpload" />
         <button ng-click="home.csvReader()">Upload</button>
     </div>

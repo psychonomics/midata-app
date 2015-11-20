@@ -1,4 +1,4 @@
-angular.module('routerApp', ['routerRoutes', 'ngAnimate', 'homeCtrl', 'resultsCtrl', 'resultsService'])
+angular.module('routerApp', ['routerRoutes', 'ngAnimate', 'homeCtrl', 'resultsCtrl', 'appService'])
 
 // create the controller and inject Angular's 
 // this will be the controller for the ENTIRE site
