@@ -4,7 +4,7 @@ angular.module('homeCtrl', ['appService'])
 
 	var vm = this;
 
-	vm.message = 'Upload your miData file below:';
+	vm.message = 'Upload your miData file below...';
 
     vm.options = [{ bankname: "Barclays"}, { bankname: "HSBC"}, { bankname: "Lloyds"}, { bankname: "Nationwide" }];
     vm.selectedOption = vm.options[0];

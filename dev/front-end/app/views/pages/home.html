@@ -1,11 +1,14 @@
+<div class="container" style="margin-top: 20px;">
 	<div class="jumbotron text-center">
         <h1>Home Page</h1>
 
         <p>{{ home.message }}</p>
-
+	</div>
+		<p>Please select your bank from the list below:</p>
+        
         <select data-ng-options="o.bankname for o in home.options" data-ng-model="home.selectedOption"></select>
-        <p> Your selected bank is {{ home.selectedOption.bankname }}</p>
-        <input type="file" id="fileUpload" />
-        <button ng-click="home.csvReader()">Upload</button>
-    </div>
-    
+        
+        <p>Your selected bank is {{ home.selectedOption.bankname }}</p>
+       	<input type="file" id="fileUpload">
+    	<button ng-click="home.csvReader()">Analyse</button>     
+<div>

@@ -8,8 +8,7 @@ body 							{ padding-top:50px; }
 	-moz-animation:slideInLeft 1.2s both ease-in;
 		animation:slideInLeft 1.2s both ease-in;
 }
-.ng-leave
-								{
+.ng-leave						{
 	-webkit-animation:slideOutDown 0.5s both ease-in;
 	-moz-animation:slideOutDown; 0.5s both ease-in;
 		animation:slideOutDown 0.5s	both ease-in;
