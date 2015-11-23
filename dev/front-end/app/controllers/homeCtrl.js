@@ -4,33 +4,37 @@ angular.module('homeCtrl', ['appService'])
 
 	var vm = this;
 
-	vm.message = 'Upload your miData file below...';
-
     vm.options = [{ bankname: "Barclays"}, { bankname: "HSBC"}, { bankname: "Lloyds"}, { bankname: "Nationwide" }];
-    vm.selectedOption = vm.options[0];
+    vm.selectedOption = "";
 
     vm.csvReader = function() {
 
-        // post bank name to mongo ---------------------------------------
-        console.log("Your selected bank is " + vm.selectedOption.bankname)
-
-        Bank.create(vm.selectedOption)
-                            .success(function(data) {
-                                vm.processing = false;
-                                console.log(data.message);
-                        });
-
-
-        // parse midata csv and send to mongo ----------------------------
         var f = document.getElementById("fileUpload").files[0];
 
-        if (f) {
+        if (vm.selectedOption === "") {
+            alert("Please select your current provider");
+        } else if (!f) {
+            alert("Please select a file to upload");
+        } else{
+
+            // turn on loading indicator
+            vm.loading = true;
+
+            // post bank name to mongo ---------------------------------------
+            // console.log("Your selected bank is " + vm.selectedOption.bankname)
+            Bank.create(vm.selectedOption)
+                .success(function(data) {
+                    vm.processing = false;
+                    console.log(data.message);
+                });
+
+            // parse midata csv and send to mongo ----------------------------
             var r = new FileReader();
             r.onload = function(e) { 
                 var contents = e.target.result;
                 var lines=contents.split("\n");
                 var headerLine = [];
-                
+                    
                 for(var i=0;i<lines.length;i++){
                     if (lines[i].indexOf("Date") > -1){
                         headerLine = i;
@@ -46,29 +50,29 @@ angular.module('homeCtrl', ['appService'])
                 headers[2] = "merchant";
                 headers[3] = "amount";
                 headers[4] = "balance";
-                
+                    
                 // console.log(headers);
                 // console.log(lines.length);
-                
+                    
                 for(var i=0;i<lines.length;i++){
 
                     // ensures only data lines are processed
                     if (lines[i].substring(0,3).match(/[0-9][0-9]/) != null) {
 
-                    	var obj = {};
+                     	var obj = {};
 
-                    	// splits by commas not in quotes
+                       	// splits by commas not in quotes
                         var myRE = /(".*?"|[^",]+)(?=\s*,|\s*$)/g;
                         var currentline = lines[i].match(myRE);
 
                         // converts date to US date format
                         var dateparts = currentline[0].split("/"); 
-    					currentline[0] = dateparts[1] + "/" + dateparts[0] + "/" + dateparts[2];               
+        		  	    currentline[0] = dateparts[1] + "/" + dateparts[0] + "/" + dateparts[2];               
 
-    					// removes £ signs
+        				// removes £ signs
                         currentline[3] = accounting.unformat(currentline[3]);   // reformat using accounting package
                         currentline[4] = accounting.unformat(currentline[4]);   // reformat using accounting package
-                      
+                          
                         // debugging
                         // console.log(lines[i]);
                         // console.log(currentline);
@@ -83,14 +87,13 @@ angular.module('homeCtrl', ['appService'])
                                 vm.processing = false;
                                 console.log(data.message);
                         });
-                    }
-                }                  
+                        
+                    }                
+                }
+            vm.loading = false;
+            vm.done = true;
             }
-                r.readAsText(f);
-        } else { 
-            alert("Failed to load file");
-        }
-            
-    };
-
+            r.readAsText(f);    
+        };
+    }
 })
