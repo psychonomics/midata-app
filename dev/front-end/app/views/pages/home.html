@@ -17,8 +17,10 @@
 			<div class="well col-md-4">
 				<p>3. Click the button to start</p>
 				<button type="button" class="btn btn-primary btn-block" ng-hide="home.loading || home.done" ng-click="home.csvReader()">Go!</button>
-				<button type="button" class="btn btn-primary btn-block" ng-show="home.loading">Loading...</button>
-				<a href="/results" class="btn btn-success btn-block" ng-show="home.done">View results</a>
+				<button type="button" class="btn btn-primary btn-block" ng-show="home.loading">
+					Loading...<i class="fa fa-spinner fa-spin"></i>
+				</button>
+				<a href="/results" class="btn btn-success btn-block fade" ng-show="home.done">View results</a>
 			</div>
 		</div>	
 	</div>

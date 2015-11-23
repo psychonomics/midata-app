@@ -14,8 +14,21 @@ body 							{ padding-top:50px; }
 		animation:slideOutLeft 0.5s	both ease-in;
 }
 
-/*.myButton {
- color: red;
+.fade {
+    opacity: 1;
 }
-*/
+.fade.ng-hide {
+    opacity: 0;
+}
+.fade.ng-hide-remove {
+    transition: all .5s linear;
+    display: block !important;
+}
+
+.myPlot{
+	margin: auto;
+	width: 1000px;
+	height: 600px;
+}
+
 

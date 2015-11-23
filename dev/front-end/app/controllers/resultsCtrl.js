@@ -14,6 +14,13 @@ angular.module('resultsCtrl', ['appService'])
             // when all the transactions come back, remove the processing variable
             vm.processing = false;
 
+            // create display tag to allow for variation in content
+            if (data.length === 0) {
+                vm.displaytag = false;
+            } else {
+                vm.displaytag = true;
+            };
+
             // grabs data for plot, first as strings
             var TransactionDate = "";
             var Balance = "";
@@ -68,6 +75,9 @@ angular.module('resultsCtrl', ['appService'])
     // run analysis script
     vm.analyse = function() {
 
+        // create loading indicator
+        vm.loading = true;
+
         Transaction.run()
             .success(function(data) {
 
@@ -77,6 +87,7 @@ angular.module('resultsCtrl', ['appService'])
                 // bind the data that come back to vm.analysis
                 vm.analysis = data.message;
                 console.log(data.message);
-            });
+                vm.loading = false;
+        });
     };
 })
