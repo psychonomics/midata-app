@@ -1,31 +1,21 @@
-angular.module('resultsService', [])
+angular.module('appService', [])
 
 .factory('Transaction', function($http) {
 
 	// create a new object
 	var transFactory = {};
 
-	// get a single user
-	transFactory.get = function(id) {
-		return $http.get('/api/midata/' + id);
-	};
-
-	// get all users
+	// get all transactions
 	transFactory.all = function() {
 		return $http.get('/api/midata/');
 	};
 
-	// create a user
+	// create a transactions
 	transFactory.create = function(transData) {
 		return $http.post('/api/midata/', transData);
 	};
 
-	// update a user
-	transFactory.update = function(id, transData) {
-		return $http.put('/api/midata/' + id, transData);
-	};
-
-	// delete a user
+	// delete a transactions
 	transFactory.delete = function(id) {
 		return $http.delete('/api/midata/' + id);
 	};
@@ -37,5 +27,25 @@ angular.module('resultsService', [])
 
 	// return our entire transFactory object
 	return transFactory;
+
+})
+
+.factory('Bank', function($http) {
+
+	// create a new object
+	var bankFactory = {};
+
+	// get all banks
+	bankFactory.all = function() {
+		return $http.get('/api/bank/');
+	};
+
+	// create a bank
+	bankFactory.create = function(transData) {
+		return $http.post('/api/bank/', transData);
+	};
+
+	// return our entire transFactory object
+	return bankFactory;
 
 });
