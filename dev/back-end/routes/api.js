@@ -146,7 +146,7 @@ module.exports = function(app, express) {
 				response = JSON.parse(response);
         		if (!err) {
         	    	console.log("Your average balance is £" + response[0]);
-        	    	res.json({ message: "Your average balance is £" + response[0] + " - you bank with " + response[1]});
+        	    	res.json({ message: "Your average balance is £" + response[0] + " and you bank with " + response[1]});
         		} else {
         	    	console.log("Rserve call failed. " + err);
         		}
