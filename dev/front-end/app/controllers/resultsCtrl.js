@@ -1,11 +1,14 @@
 angular.module('resultsCtrl', ['appService'])
 
-.controller('resultsController', function(Transaction) {
+.controller('resultsController', function($scope, Transaction) {
+
+    // only instance of using scope, for page animation
+    $scope.pageClass = 'page-results';
 
 	var vm = this;
 
-    // set a processing variable to show loading things
-    vm.processing = true;
+    // // set a processing variable to show loading things
+    // vm.processing = true;
 
     // grab all the transactions at page load
     Transaction.all()

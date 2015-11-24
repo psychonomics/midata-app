@@ -1,6 +1,9 @@
 angular.module('homeCtrl', ['appService'])
 
-.controller('homeController', function(Transaction, Bank) {
+.controller('homeController', function($scope, Transaction, Bank) {
+
+    // only instance of using scope, for page animation
+    $scope.pageClass = 'page-home';
 
 	var vm = this;
 
