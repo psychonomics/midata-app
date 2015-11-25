@@ -2,17 +2,29 @@ body 							{ padding-top:50px; }
 
 #content-views					{ position: relative; }
 
-.ng-enter, .ng-leave			{width:100%; position: absolute; }
-.ng-enter						{
-	-webkit-animation:slideInLeft 1.2s both ease-in;
-	-moz-animation:slideInLeft 1.2s both ease-in;
-		animation:slideInLeft 1.2s both ease-in;
+.ng-enter, .ng-leave			{width:100%; position: relative; }
+
+.page-home.ng-enter           { animation: slideInLeft 1.2s both ease-in;}
+.page-home.ng-leave           { animation: slideOutLeft 0.5s both ease-in;}
+
+.page-results.ng-enter           { animation: slideInRight 1.2s both ease-in;}
+.page-results.ng-leave           { animation: slideOutRight 0.5s both ease-in;}
+
+.fade {
+    opacity: 1;
 }
-.ng-leave
-								{
-	-webkit-animation:slideOutDown 0.5s both ease-in;
-	-moz-animation:slideOutDown; 0.5s both ease-in;
-		animation:slideOutDown 0.5s	both ease-in;
+.fade.ng-hide {
+    opacity: 0;
+}
+.fade.ng-hide-remove {
+    transition: all .5s linear;
+    display: block !important;
+}
+
+.myPlot{
+	margin: auto;
+	width: 1000px;
+	height: 600px;
 }
 
 
